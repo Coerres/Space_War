@@ -17,7 +17,7 @@ class Sprite(turtle.Turtle):
         def __init__(self, spriteshape, color, startx, starty):
                 turtle.Turtle.__init__(self, shape = spriteshape)
                 self.speed(0)
-                self.penup
+                self.penup()
                 self.color(color)
                 self.fd(0)
                 self.goto(startx, starty)
