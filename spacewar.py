@@ -21,11 +21,29 @@ class Sprite(turtle.Turtle):
                 self.color(color)
                 self.fd(0)
                 self.goto(startx, starty)
-
                 self.speed = 1
 
+        def move(self):
+                self.fd(self.speed)
+
+class Player(Sprite):
+        def __init__(self, spriteshape, color, startx, starty):
+            Sprite.__init__(self, spriteshape, color, startx, starty)
+            self.speed = 4
+            self.lives = 3
+        
+        def turn_left(self):
+               self.lt(45)
+        
+
 #Create my sprites
-player = Sprite("triangle", "white", 0, 0)
+player = Player("triangle", "white", 0, 0)
+
+#Main game loop
+while True:
+      player.move()
+      player.turn_left()
+        
 
 
 
