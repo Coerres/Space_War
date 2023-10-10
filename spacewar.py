@@ -171,7 +171,7 @@ class Game():
 #Create game object
 game = Game()
 
-#Draw the game border
+
 game.draw_border()
 
 #Show the game status
