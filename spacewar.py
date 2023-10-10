@@ -23,8 +23,27 @@ class Sprite(turtle.Turtle):
                 self.goto(startx, starty)
                 self.speed = 1
 
+
         def move(self):
-                self.fd(self.speed)
+            self.fd(self.speed)
+        
+        #Boundary detection
+            if self.xcor() > 290:
+             self.setx(290)
+             self.rt(60)
+
+            if self.xcor() < -290:
+             self.setx(-290)
+             self.rt(60)
+
+            if self.ycor() > 290:
+             self.sety(290)
+             self.rt(60)
+
+            if self.ycor() < -290:
+             self.sety(-290)
+             self.rt(60)
+       
 
 class Player(Sprite):
         def __init__(self, spriteshape, color, startx, starty):
