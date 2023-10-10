@@ -115,6 +115,8 @@ class Missile(Sprite):
 
         def fire(self):
              if self.status == "ready":
+            #Play missile sound
+                  os.system("afplay laser.mp3&")
                   self.goto(player.xcor(), player.ycor())
                   self.setheading(player.heading())
                   self.status = "firing"
@@ -155,12 +157,25 @@ class Game():
                     self.pen.rt(90)
                self.pen.penup()
                self.pen.ht() 
+               self.pen.pendown()
+        
+        def show_status(self):
+             self.pen.undo()
+             msg = "Score: %s" %(self.score)
+             self.pen.penup()
+             self.pen.goto(-300, 310)
+             self.pen.write(msg, font=("Arial", 16, "normal"))
+
+
 
 #Create game object
 game = Game()
 
 #Draw the game border
 game.draw_border()
+
+#Show the game status
+game.show_status()
 
 #Create my sprites
 player = Player("triangle", "white", 0, 0)
@@ -187,23 +202,37 @@ while True:
 
       #Check for a collision with the player
       if player.is_collision(enemy):
+            #Play explosion sound
+            os.system("afplay explosion.mp3&")
             x = random.randint(-250, 250)
             y = random.randint(-250, 250)
             enemy.goto(x, y)
+            game.score -= 100
+            game.show_status() 
 
       #Check for a collision between the missile and the enemy
       if missile.is_collision(enemy):
+            #Play explosion sound
+            os.system("afplay explosion.mp3&")
             x = random.randint(-250, 250)
             y = random.randint(-250, 250)
             enemy.goto(x, y)
             missile.status = "ready"
+            #Increase the score
+            game.score += 100
+            game.show_status()
 
       #Check for a collision between the missile and the ally
       if missile.is_collision(ally):
+            #Play explosion sound
+            os.system("afplay explosion.mp3&")
             x = random.randint(-250, 250)
             y = random.randint(-250, 250)
             ally.goto(x, y)
             missile.status = "ready"
+            #Decrease the score
+            game.score -= 50
+            game.show_status()
 
 
 
