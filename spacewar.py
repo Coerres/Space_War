@@ -266,4 +266,4 @@ while True:
     for particle in particles:
         particle.move()
 
-delay = input("Press enter to exit. > ")
+    delay = input("Press enter to exit. > ")
